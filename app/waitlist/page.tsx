@@ -4,7 +4,7 @@ import { StarsBackground } from "@/components/ui/stars-background"
 
 export default function Waitlist() {
     return (
-        <div className="relative min-h-screen bg-black text-white overflow-hidden">
+        <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
             {/* Background elements */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(38,38,38,0.4),transparent)]" />
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent" />

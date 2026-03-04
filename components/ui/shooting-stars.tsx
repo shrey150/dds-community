@@ -14,10 +14,6 @@ export function ShootingStars() {
   return (
     <>
       <style jsx global>{`
-        body {
-          overflow: hidden;
-        }
-        
         .shooting-star {
           position: absolute;
           width: 4px;
