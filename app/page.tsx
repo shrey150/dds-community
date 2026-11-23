@@ -18,7 +18,7 @@ export default function Home() {
       <ShootingStars />
 
       {/* Hero: full viewport; globe anchors here so it stays above the fold */}
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative min-h-screen overflow-x-hidden">
         <div className="relative z-10 container mx-auto px-4 flex flex-col items-center justify-center min-h-screen py-20">
           <div className="max-w-3xl w-full mx-auto text-center flex flex-col gap-8 items-center">
             <h1 className="text-6xl md:text-8xl tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-gold-400 to-gold-600 font-serif font-normal">
