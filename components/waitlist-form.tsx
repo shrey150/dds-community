@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { toast } from "@/hooks/use-toast"
 import { submitWaitlistApplication } from "@/lib/actions"
 
@@ -22,10 +22,10 @@ const formSchema = z.object({
     message: "Please enter a valid email address.",
   }),
   profession: z.string().min(2, {
-    message: "Unique edge must be at least 2 characters.",
+    message: "Please add a short line about what you do.",
   }),
   reason: z.string().min(10, {
-    message: "Please tell us a bit more about why you want to join.",
+    message: "Please include a brief note (at least a few words).",
   }),
 })
 
@@ -46,7 +46,6 @@ export function WaitlistForm() {
     setIsSubmitting(true)
 
     try {
-      // Create a FormData object to pass to the server action
       const formData = new FormData()
       formData.append("name", values.name)
       formData.append("email", values.email)
@@ -57,8 +56,8 @@ export function WaitlistForm() {
 
       if (result.success) {
         toast({
-          title: "Application received!",
-          description: "We'll review your application and get back to you soon.",
+          title: "Message sent",
+          description: "We’ll get back to you soon.",
         })
         form.reset()
       } else {
@@ -84,16 +83,16 @@ export function WaitlistForm() {
     <Card className="border-gold-500/20 bg-black/40 backdrop-blur-sm shadow-lg shadow-black/10 font-serif">
       <CardContent className="pt-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 font-serif">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 font-serif">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gold-400 font-serif">Full Name</FormLabel>
+                  <FormLabel className="text-gold-400 font-serif">Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="First and Last Name"
+                      placeholder="Your name"
                       {...field}
                       className="bg-black/50 border-gold-500/30 text-white focus-visible:ring-gold-500/30 focus-visible:ring-offset-gold-500/20 font-serif"
                     />
@@ -111,7 +110,7 @@ export function WaitlistForm() {
                   <FormLabel className="text-gold-400 font-serif">Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="your_name@email.com"
+                      placeholder="you@company.com"
                       type="email"
                       {...field}
                       className="bg-black/50 border-gold-500/30 text-white focus-visible:ring-gold-500/30 focus-visible:ring-offset-gold-500/20 font-serif"
@@ -127,10 +126,10 @@ export function WaitlistForm() {
               name="profession"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gold-400 font-serif">Unique edge</FormLabel>
+                  <FormLabel className="text-gold-400 font-serif">Role</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="What makes you interesting?"
+                      placeholder="What you do"
                       {...field}
                       className="bg-black/50 border-gold-500/30 text-white focus-visible:ring-gold-500/30 focus-visible:ring-offset-gold-500/20 font-serif"
                     />
@@ -145,15 +144,14 @@ export function WaitlistForm() {
               name="reason"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gold-400 font-serif">Why do you want to join?</FormLabel>
+                  <FormLabel className="text-gold-400 font-serif">Note</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell us a bit about yourself and why you're interested in joining our network..."
+                      placeholder="A few words on why you’re reaching out."
                       className="min-h-[100px] bg-black/50 border-gold-500/30 text-white focus-visible:ring-gold-500/30 focus-visible:ring-offset-gold-500/20 font-serif"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="text-gold-700/70 font-serif">This helps us understand if you&apos;re a good fit for our community.</FormDescription>
                   <FormMessage className="text-gold-300" />
                 </FormItem>
               )}
@@ -167,10 +165,10 @@ export function WaitlistForm() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Submitting...
+                  Sending…
                 </>
               ) : (
-                "Request Invitation"
+                "Send"
               )}
             </Button>
           </form>
@@ -179,4 +177,3 @@ export function WaitlistForm() {
     </Card>
   )
 }
-

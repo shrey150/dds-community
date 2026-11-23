@@ -71,7 +71,7 @@ export async function submitWaitlistApplication(formData: FormData) {
     console.error("Error submitting waitlist application:", error)
     return { 
       success: false, 
-      error: error instanceof Error ? error.message : "Failed to submit application" 
+      error: error instanceof Error ? error.message : "Failed to send message" 
     }
   }
 }
